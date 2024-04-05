@@ -39,7 +39,7 @@ productsRoutes.patch("/update/:id", async (req, res) => {
     if (!data) {
       return res.status(404).send({ error: "Product not found" });
     }
-    if (data.userID !== req.body.userID) {
+    if (data.owner !== req.body.owner) {
       return res.status(403).send({ error: "Not authorized" });
     }
     await ProductsModel.findByIdAndUpdate(id, req.body);
@@ -56,7 +56,7 @@ productsRoutes.delete("/delete/:id", async (req, res) => {
     if (!data) {
       return res.status(404).send({ error: "Product not found" });
     }
-    if (data.userID !== req.body.userID) {
+    if (data.owner !== req.body.owner) {
       return res.status(403).send({ error: "Not authorized" });
     }
     await ProductsModel.findByIdAndDelete(id);

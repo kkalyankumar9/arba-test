@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
-
 import {
   Box,
   Button,
@@ -36,45 +34,36 @@ const ProductsTable = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
-  console.log(productsData)
 
   useEffect(() => {
     dispatch(getProductdata());
   }, [dispatch]);
 
-  const handleDelete = () => {
-    if (selectedTask) {
-      dispatch(deleteProduct(selectedTask._id))
-        .then(() => {
-          toast({
-            title: 'Task Deleted',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          });
-          dispatch(getProductdata());
-          setIsDeleteAlertOpen(false);
-        })
-        .catch((error) => {
-          console.log(error);
+  const handleDelete = (taskId) => {
+    dispatch(deleteProduct(taskId))
+      .then(() => {
+        toast({
+          title: 'Product Deleted',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
         });
-    }
+        dispatch(getProductdata());
+        setIsDeleteAlertOpen(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const onCloseDeleteAlert = () => {
-    setIsDeleteAlertOpen(false);
-    setSelectedTask(null);
-  };
+
 
   return (
     <>
       <NavBar />
-
-      <Box mx="auto" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'100px'} >
+      <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'100px'}>
         {isLoading && <p className="text-center">Loading...</p>}
-
         {isError && <p className="text-center text-red-500">Error fetching data</p>}
-
         {productsData && (
           <Table variant="simple">
             <Thead>
@@ -83,28 +72,28 @@ const ProductsTable = () => {
                 <Th>Description</Th>
                 <Th>Image</Th>
                 <Th>Price</Th>
+                <Th>Actions</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {productsData.data?.map((task) => (
+              {productsData.map((task) => (
                 <Tr key={task._id}>
-                  <Td><Image src={task.description} alt=""/></Td>
                   <Td>{task.title}</Td>
                   <Td>{task.description}</Td>
-                  <Td>{task.Price}</Td>
+                  <Td><Image src={task.image} alt="" h="100px" /></Td>
+                  <Td>{task.price}</Td>
                   <Td>
                     <Flex align="center">
                       <Button
                         colorScheme="red"
                         onClick={() => {
-                          setSelectedTask(task);
-                          setIsDeleteAlertOpen(true);
+                          handleDelete(task._id)
                         }}
                         disabled={!isAuth}
                       >
                         Delete
                       </Button>
-                      <Link to={`/taskedit/${task._id}`}>
+                      <Link to={`/productedit/${task._id}`}>
                         <Button colorScheme="blue" ml={2} disabled={!isAuth}>
                           Edit
                         </Button>
@@ -117,24 +106,8 @@ const ProductsTable = () => {
           </Table>
         )}
       </Box>
-
-      {/* Delete Confirmation Alert */}
-      <AlertDialog isOpen={isDeleteAlertOpen} onClose={onCloseDeleteAlert}>
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete Task
-            </AlertDialogHeader>
-            <AlertDialogBody>Are you sure you want to delete this task?</AlertDialogBody>
-            <AlertDialogFooter>
-              <Button onClick={onCloseDeleteAlert}>Cancel</Button>
-              <Button colorScheme="red" onClick={handleDelete} ml={3}>
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+    
+  
     </>
   );
 };

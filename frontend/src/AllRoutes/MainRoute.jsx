@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute'
 import MyStore from '../Components/MyStore'
 import CategoryStore from '../Components/CategoryStore'
 import ProductsTable from '../Components/Products_Operations/Productsbar'
+import EditProduct from '../Components/Products_Operations/EditTask'
 
 
 
@@ -25,6 +26,8 @@ const MainRoute = () => {
         <Route path="/categoryStore" element={<CategoryStore/>}/>
 
         <Route path="/productStore" element={<PrivateRoute><ProductsTable/></PrivateRoute>}/>
+        <Route path="/productedit/:id" element={<PrivateRoute><EditProduct/></PrivateRoute>}/>
+
 
 
         <Route path="/cart" element={<PrivateRoute><CartPage/></PrivateRoute>}/>

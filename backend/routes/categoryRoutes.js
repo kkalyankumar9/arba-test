@@ -35,7 +35,7 @@ categoryRoutes.patch("/update/:id", async (req, res) => {
     if (!data) {
       return res.status(404).send({ error: "category not found" });
     }
-    if (data.userID !== req.body.userID) {
+    if (data.owner !== req.body.owner) {
       return res.status(403).send({ error: "Not authorized" });
     }
     await CategoryModel.findByIdAndUpdate(id, req.body);
@@ -52,7 +52,7 @@ categoryRoutes.delete("/delete/:id", async (req, res) => {
     if (!data) {
       return res.status(404).send({ error: "Category not found" });
     }
-    if (data.userID !== req.body.userID) {
+    if (data.owner !== req.body.owner) {
       return res.status(403).send({ error: "Not authorized" });
     }
     await CategoryModel.findByIdAndDelete(id);

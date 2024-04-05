@@ -5,7 +5,7 @@ export const getProductdata = () => async (dispatch) => {
   try {
     const response = await fetch("https://arba-test.onrender.com/products/get", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Corrected the format of Authorization header
+        Authorization: ` ${localStorage.getItem("token")}`, 
       },
     });
     if (!response.ok) {
@@ -13,7 +13,7 @@ export const getProductdata = () => async (dispatch) => {
     }
     const data = await response.json();
     dispatch({ type: GET_SUCCESS, payload: data }); // Dispatching data instead of response
-    console.log(data);
+    console.log(data.data);
   } catch (error) {
     dispatch({ type: GET_ERROR });
     console.error(error);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTaskdata, updateTask } from '../../Redux/Task/action';
+
 import {
   Box,
   Heading,
@@ -12,29 +12,34 @@ import {
   VStack,
   useToast
 } from '@chakra-ui/react';
-import Navbar from '../Navbar';
+import NavBar from '../Navbar';
+import { getProductdata, updateProduct } from '../../Redux/Products/action';
 
-const EditTask = () => {
+
+const EditProduct = () => {
   const dispatch = useDispatch();
   const { taskId } = useParams();
   console.log(taskId)
-  const taskData = useSelector((store) => store.TaskReducer.taskData);
-
+  const productsData = useSelector((store) => store.ProductsReducer.productsData);
+  console.log(productsData)
  
   const [data, setData] = useState({
     title: "",
-    description: ""
+    description: "",
+    image:"",
+    price:""
 
   });
 const toast=useToast()
   useEffect(() => {
-    const existingTask = taskData?.find((task) => task._id == taskId);
+    const existingTask = productsData?.find((task) => task._id == taskId);
 
     console.log(existingTask)
     if (existingTask) {
       setData(existingTask);
     }
-  }, [taskId, taskData]);
+   
+  }, [taskId, productsData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +47,7 @@ const toast=useToast()
   };
 
   const handleUpdate = () => {
-    dispatch(updateTask(taskId, data))
+    dispatch(updateProduct(taskId, data))
       .then(() => {
         alert('Data updated');
         toast({
@@ -53,7 +58,7 @@ const toast=useToast()
           isClosable: true,
         });
         
-        dispatch(getTaskdata());
+        dispatch(getProductdata());
       })
       .catch((error) => {
         console.error(error);
@@ -68,7 +73,7 @@ const toast=useToast()
 
   return (
     <>
-<Navbar/>
+<NavBar/>
 <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
     <Box shadow="md" w={{ base: "90%", sm: "400px" }} p={8} borderRadius="md">
       <Heading mb={4}>Edit Task</Heading>
@@ -91,6 +96,24 @@ const toast=useToast()
             onChange={handleChange}
           />
         </FormControl>
+        <FormControl>
+          <FormLabel>Image</FormLabel>
+          <Input
+            type="text"
+            name="image"
+            value={data.image}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Price</FormLabel>
+          <Input
+            type="text"
+            name="price"
+            value={data.price}
+            onChange={handleChange}
+          />
+        </FormControl>
         <Button colorScheme="blue" onClick={handleUpdate}>
           Update Task
         </Button>
@@ -102,4 +125,4 @@ const toast=useToast()
   );
 };
 
-export default EditTask;
+export default EditProduct;
