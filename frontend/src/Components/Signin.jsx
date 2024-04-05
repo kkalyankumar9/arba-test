@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../Redux/Auth/action";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -12,7 +12,8 @@ import {
   Heading,
   Flex,
   useToast,
-  FormErrorMessage
+  FormErrorMessage,
+  Text
 } from "@chakra-ui/react";
 
 const Signin = () => {
@@ -124,9 +125,9 @@ const Signin = () => {
   // };
 
   return (
-    <>
-      <Box > </Box>
-      <Box display={"flex"} align="center" justify="center" h="100vh">
+    <><Flex>
+      <Box w={"50%"}   bgColor={"#B2EBF2"}> </Box>
+      <Box display={"flex"} align="center" justify="center" h="100vh" margin={"auto"}>
       <Box bg="white" shadow="md" rounded="md" p="8" w="96">
         <Heading as="h1" size="xl" fontWeight="bold" mb="4">
           Sign In
@@ -175,11 +176,13 @@ const Signin = () => {
             </Button>
           </Flex>
         </form>
+        <Text><Link to={"/forgotpassword"}>forgot password</Link></Text>
         <Flex justify={"center"} align={"center"}>
           <Button onClick={handleBack} ml={"20px"}>Back</Button>
         </Flex>
       </Box>
     </Box>
+    </Flex>
     </>
   );
 };

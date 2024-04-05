@@ -10,10 +10,14 @@ const MyStore = () => {
   return (
     <>
 
-    MyStore
-    <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} w={"70%"} m={"auto"}>
+  
+   
+    <Box mt={"5%"} p={"1%"}>
+    <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} w={"70%"} m={"auto"} >
         <Box><Button onClick={()=>setToggle(true)}>Categories</Button></Box>
         <Box><Button onClick={()=>setToggle(false)}>Products</Button></Box>
+    </Box>
+        <Button><Link to={"/addproduct"}>Add</Link></Button>
     </Box>
     <Box>
         {

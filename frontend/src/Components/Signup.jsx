@@ -103,14 +103,14 @@ const Signup = () => {
   return (
     <>
       <Box display={"flex"} w={"100%"}>
-        <Box border={"2px solid red"} w={"50%"}>
+        <Box bgColor={"#B2EBF2"} w={"50%"}>
           {/* Content */}
         </Box>
         <Flex align="center" justify="center" h="100vh" mt={"4%"} w={"50%"}>
           <Box />
           <Box maxW="md" w="full" bg="white" shadow="md" rounded="md" p="8">
             <Heading as="h1" size="xl" fontWeight="bold" mb="4">
-              APP NAME
+              DEV
             </Heading>
             <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
             <form onSubmit={handleSubmit}>

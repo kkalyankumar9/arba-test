@@ -93,7 +93,7 @@ const ProductsTable = () => {
                       >
                         Delete
                       </Button>
-                      <Link to={`/productedit/${task._id}`}>
+                      <Link to={`/addproduct/${task._id}`}>
                         <Button colorScheme="blue" ml={2} disabled={!isAuth}>
                           Edit
                         </Button>

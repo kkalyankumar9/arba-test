@@ -9,13 +9,17 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createTask } from "../../Redux/Task/action";
-import Navbar from "../Navbar";
+import { createProduct } from "../../Redux/Products/action";
+import NavBar from "../Navbar";
 
-const Addtask = () => {
+
+
+const AddProduct = () => {
   const initialData = {
     title: "",
-    description: ""
+    description: "",
+    price:"",
+    image:""
    
   };
 
@@ -30,7 +34,7 @@ const Addtask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createTask(taskAdd))
+    dispatch(createProduct(taskAdd))
       .then(() => {
         alert("Data added successfully");
         // You can redirect to another page or handle success as needed
@@ -45,7 +49,7 @@ const Addtask = () => {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
   
       <VStack width={"400px"}  align="center" justify="center" m={"auto"}  h="full" mt={"200px"}  boxShadow= "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" p={9}>
 
@@ -73,7 +77,29 @@ const Addtask = () => {
               onChange={handleChange}
             />
           </FormControl>
+          <FormControl mb="4" >
+            <FormLabel htmlFor="name">Price</FormLabel>
+            <Input
+              type="text"
+              id="price"
+              placeholder="Enter price"
+              name="price"
+              value={taskAdd.price}
+              onChange={handleChange}
+            />
+          </FormControl>
 
+          <FormControl mb="4">
+            <FormLabel htmlFor="description"> Image</FormLabel>
+            <Input
+              type="text"
+              id="image"
+              placeholder="  Image"
+              name="image"
+              value={taskAdd.image}
+              onChange={handleChange}
+            />
+          </FormControl>
           <Button
             type="submit"
             colorScheme="blue"
@@ -100,4 +126,4 @@ const Addtask = () => {
   );
 };
 
-export default Addtask;
+export default AddProduct;
