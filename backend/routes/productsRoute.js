@@ -9,7 +9,7 @@ productsRoutes.use(auth);
 
 productsRoutes.get("/get", async (req, res) => {
   try {
-    const data = await ProductsModel.find({ userID: req.body.userID });
+    const data = await ProductsModel.find({ owner: req.body.owner });
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ error: "Internal server error" });

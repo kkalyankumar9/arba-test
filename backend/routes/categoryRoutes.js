@@ -8,7 +8,7 @@ categoryRoutes.use(auth);
 
 categoryRoutes.get("/get", async (req, res) => {
   try {
-    const data = await CategoryModel.find({ userID: req.body.userID });
+    const data = await CategoryModel.find({ owner: req.body.owner });
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ error: "Internal server error" });
