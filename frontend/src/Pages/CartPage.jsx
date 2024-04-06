@@ -1,6 +1,8 @@
 import React from 'react';
 import { SimpleGrid, Box, Image, Text, Button, HStack } from '@chakra-ui/react';
 import NavBar from '../Components/Navbar';
+import { ArrowRightIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -70,6 +72,20 @@ const CartPage = () => {
                     </Box>
                 ))}
             </SimpleGrid>
+           {cartItems.length>0?
+           <Box mt={5} display="flex" justifyContent="flex-end">
+           <Button
+             w="10%"
+             color={"white"}
+             bgColor={"#3cd9ee"}
+           
+             textAlign={"right"}
+           ><Link to={"/"}>Check out <ArrowRightIcon /></Link>
+             
+           </Button>
+           </Box>:<Text textAlign={"center"} size={"lg"}  fontWeight={"bold"} color={"#3cd9ee"}>Cart is empty!</Text>
+
+           } 
         </>
     );
 };
