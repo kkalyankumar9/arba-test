@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const ProfilePage= () => {
   const [fullName, setFullName] = useState('');
   const [avatar, setAvatar] = useState('');
   const [newPassword, setNewPassword] = useState('');
+
+  useEffect(()=>{
+    axios.get("/")
+  },[])
 
   const handleSubmit = async (e,id) => {
     e.preventDefault();
