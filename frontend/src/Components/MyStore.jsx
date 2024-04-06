@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CategoryStore from './CategoryStore'
@@ -14,9 +14,9 @@ const MyStore = () => {
   
    
     <Box mt={"5%"} p={"1%"}>
-    <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} w={"70%"} m={"auto"} >
-        <Box><Button onClick={()=>setToggle(true)}>Categories</Button></Box>
-        <Box><Button onClick={()=>setToggle(false)}>Products</Button></Box>
+    <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} w={"70%"}  m={"auto"}bgColor={" #41daee"} >
+        <Box _hover={{bgColor:"#c3dbf3"}} w={"50%"}><Text size={"md"} onClick={()=>setToggle(true)}>Categories</Text></Box>
+        <Box _hover={{bgColor:"#c3dbf3"}} w={"50%"}><Text size={"md"} onClick={()=>setToggle(false)}>Products</Text></Box>
     </Box>
         
     </Box>

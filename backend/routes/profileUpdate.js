@@ -40,4 +40,14 @@ profileRoutes.patch("/profile_update/:id", async (req, res) => {
   }
 });
 
+profileRoutes.get("/get", async (req, res) => {
+  try {
+    const data = await UserModel.find({ _id: req.body.userID });
+    res.status(200).send(data);
+    console.log(data)
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
+
 module.exports = { profileRoutes };
