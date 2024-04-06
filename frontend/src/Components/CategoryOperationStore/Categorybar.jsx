@@ -13,34 +13,29 @@ import {
   Td,
   Flex,
   useToast,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
   Image
 } from '@chakra-ui/react';
 import { deleteProduct, getProductdata } from '../../Redux/Products/action';
 import NavBar from '../Navbar';
+import { deleteCategory, getCategorydata } from '../../Redux/Category/action';
 
-const ProductsTable = () => {
+const CategoryTable = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
 
-  const productsData = useSelector((store) => store.ProductsReducer.productsData);
+  const categoryData = useSelector((store) => store.ProductsReducer.categoryData);
   const isLoading = useSelector((store) => store.ProductsReducer.isLoading);
   const isError = useSelector((store) => store.ProductsReducer.isError);
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
-
+console.log(categoryData)
   useEffect(() => {
-    dispatch(getProductdata());
+    dispatch(getCategorydata());
   }, [dispatch]);
 
   const handleDelete = (taskId) => {
-    dispatch(deleteProduct(taskId))
+    dispatch(deleteCategory(taskId))
       .then(() => {
         toast({
           title: 'Product Deleted',
@@ -60,29 +55,29 @@ const ProductsTable = () => {
 
   return (
     <>
+      <Button><Link to={"/addcategoy"}>Add</Link></Button>
       <NavBar />
-      <Button><Link to={"/addproduct"}>Add</Link></Button>
       <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'100px'}>
         {isLoading && <p className="text-center">Loading...</p>}
         {isError && <p className="text-center text-red-500">Error fetching data</p>}
-        {productsData && (
+        {categoryData && (
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th>Title</Th>
-                <Th>Description</Th>
+                <Th>Name</Th>
+                <Th>Slag</Th>
                 <Th>Image</Th>
-                <Th>Price</Th>
+                
                 <Th>Actions</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {productsData.map((task) => (
+              {categoryData.map((task) => (
                 <Tr key={task._id}>
-                  <Td>{task.title}</Td>
-                  <Td>{task.description}</Td>
+                  <Td>{task.name}</Td>
+                  <Td>{task.slag}</Td>
                   <Td><Image src={task.image} alt="" h="100px" /></Td>
-                  <Td>{task.price}</Td>
+             
                   <Td>
                     <Flex align="center">
                       <Button
@@ -94,7 +89,7 @@ const ProductsTable = () => {
                       >
                         Delete
                       </Button>
-                      <Link to={`/editproduct/${task._id}`}>
+                      <Link to={`/editcategoy/${task._id}`}>
                         <Button colorScheme="blue" ml={2} disabled={!isAuth}>
                           Edit
                         </Button>
@@ -113,4 +108,4 @@ const ProductsTable = () => {
   );
 };
 
-export default ProductsTable;
+export default CategoryTable;

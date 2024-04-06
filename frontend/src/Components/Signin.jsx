@@ -134,9 +134,7 @@ const Signin = () => {
         </Heading>
         <form onSubmit={handleSubmit}>
           <FormControl mb="4" isInvalid={inputErrors.email}>
-            <FormLabel htmlFor="email" fontSize="sm" fontWeight="bold" mb="2">
-              Email
-            </FormLabel>
+       
             <Input
               type="email"
               id="email"
@@ -149,9 +147,7 @@ const Signin = () => {
             <FormErrorMessage>Enter a valid email address</FormErrorMessage>
           </FormControl>
           <FormControl mb="6" isInvalid={inputErrors.password}>
-            <FormLabel htmlFor="password" fontSize="sm" fontWeight="bold" mb="2">
-              Password
-            </FormLabel>
+           
             <Input
               type="password"
               id="password"

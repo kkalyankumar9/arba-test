@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import CategoryStore from './CategoryStore'
 
 import ProductsTable from './Products_Operations/Productsbar'
+import CategoryTable from './CategoryOperationStore/Categorybar'
 
 const MyStore = () => {
     const [toggle,setToggle]=useState(false)
@@ -17,11 +18,11 @@ const MyStore = () => {
         <Box><Button onClick={()=>setToggle(true)}>Categories</Button></Box>
         <Box><Button onClick={()=>setToggle(false)}>Products</Button></Box>
     </Box>
-        <Button><Link to={"/addproduct"}>Add</Link></Button>
+        
     </Box>
     <Box>
         {
-            toggle?<CategoryStore/>:<ProductsTable/>
+            toggle?<CategoryTable/>:<ProductsTable/>
         }
     </Box>
     

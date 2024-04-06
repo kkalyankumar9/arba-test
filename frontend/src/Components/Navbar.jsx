@@ -58,12 +58,14 @@ import {
       >
         <Container maxW="1280px" px={4} mx="auto">
           <HStack spacing={4}>
+            <Link to="/productdispaly">
             <Image
               alt="dev logo"
               w={'auto'}
               h={12}
               src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
             />
+            </Link>
             <Spacer />
             <HStack spacing={3}>
                 <Link to={"/cart"}>

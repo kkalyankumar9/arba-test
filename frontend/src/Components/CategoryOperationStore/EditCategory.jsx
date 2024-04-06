@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -13,10 +13,11 @@ import {
   useToast
 } from '@chakra-ui/react';
 import NavBar from '../Navbar';
-import { getProductdata, updateProduct } from '../../Redux/Products/action';
+
+import { getCategorydata, updateCategory } from '../../Redux/Category/action';
 
 
-const EditProduct = () => {
+const EditCategory = () => {
   const dispatch = useDispatch();
   const { id } = useParams(); // Corrected to match the route parameter
   console.log(id);
@@ -24,10 +25,10 @@ const EditProduct = () => {
   console.log(productsData);
  
   const [data, setData] = useState({
-    title: "",
-    description: "",
-    image:"",
-    price:""
+    image: "",
+    name: "",
+    slag:"",
+    
   });
   const toast = useToast();
 
@@ -47,7 +48,7 @@ const EditProduct = () => {
   };
 
   const handleUpdate = () => {
-    dispatch(updateProduct(id, data))
+    dispatch(updateCategory(id, data))
       .then(() => {
         alert('Data updated');
         toast({
@@ -58,7 +59,7 @@ const EditProduct = () => {
           isClosable: true,
         });
         
-        dispatch(getProductdata());
+        dispatch(getCategorydata());
       })
       .catch((error) => {
         console.error(error);
@@ -74,6 +75,7 @@ const EditProduct = () => {
   return (
     <>
       <NavBar />
+      
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
         <Box shadow="md" w={{ base: "90%", sm: "400px" }} p={8} borderRadius="md">
           <Heading mb={4}>Edit Task</Heading>
@@ -124,4 +126,4 @@ const EditProduct = () => {
   );
 };
 
-export default EditProduct;
+export default EditCategory;
