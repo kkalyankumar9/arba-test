@@ -21,8 +21,8 @@ const EditCategory = () => {
   const dispatch = useDispatch();
   const { id } = useParams(); // Corrected to match the route parameter
   console.log(id);
-  const productsData = useSelector((store) => store.ProductsReducer.productsData);
-  console.log(productsData);
+  const categoryData = useSelector((store) => store.CategoryReducer.categoryData);
+  console.log(categoryData);
  
   const [data, setData] = useState({
     image: "",
@@ -33,14 +33,14 @@ const EditCategory = () => {
   const toast = useToast();
 
   useEffect(() => {
-    const existingTask = productsData?.find((task) => task._id === id); // Corrected property name to match your data structure
+    const existingTask = categoryData?.find((task) => task._id === id); // Corrected property name to match your data structure
 
     console.log(existingTask);
     if (existingTask) {
       setData(existingTask);
     }
    
-  }, [id, productsData]);
+  }, [id, categoryData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

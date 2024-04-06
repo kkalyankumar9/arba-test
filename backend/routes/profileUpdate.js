@@ -2,7 +2,7 @@ const express = require("express");
 const { auth } = require("../middleware/auth");
 const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/userModel");
-const { default: axios } = require("axios");
+
 
 const profileRoutes = express.Router();
 

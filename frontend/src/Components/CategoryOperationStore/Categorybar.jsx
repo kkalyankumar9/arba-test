@@ -23,13 +23,13 @@ const CategoryTable = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
 
-  const categoryData = useSelector((store) => store.ProductsReducer.categoryData);
-  const isLoading = useSelector((store) => store.ProductsReducer.isLoading);
-  const isError = useSelector((store) => store.ProductsReducer.isError);
+  const categoryData = useSelector((store) => store.CategoryReducer.categoryData);
+  const isLoading = useSelector((store) => store.CategoryReducer.isLoading);
+  const isError = useSelector((store) => store.CategoryReducer.isError);
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
-console.log(categoryData)
+console.log("categoryData"+categoryData)
   useEffect(() => {
     dispatch(getCategorydata());
   }, [dispatch]);
