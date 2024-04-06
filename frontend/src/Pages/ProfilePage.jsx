@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ProfilePage= () => {
+const ProfilePage = () => {
   const [fullName, setFullName] = useState('');
   const [avatar, setAvatar] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [profiledata, setProfiledata] = useState([]);
 
-  useEffect(()=>{
-    axios.get("/")
-  },[])
+  useEffect(() => {
+    fetch("https://arba-test.onrender.com/updateprofile/get", {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setProfiledata(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  const handleSubmit = async (e,id) => {
+  const handleSubmit = async (e, id) => {
     e.preventDefault();
 
     try {
@@ -29,8 +41,22 @@ const ProfilePage= () => {
 
   return (
     <div>
+      <div>
+        {profiledata.map((e, i) => (
+          <div key={e._id}>
+            <img src={e.image} alt='avatar' />
+            <p>{e.userName}</p>
+            <p>{e.email}</p>
+            <button onClick={(e) => handleSubmit(e, e._id)}>Update Profile</button>
+          </div>
+        ))}
+      </div>
+      <div>
+        <button>T & C</button>
+        <button>Change Password</button>
+      </div>
       <h1>Update Profile</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e, profiledata[0]._id)}>
         <label>
           Full Name:
           <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />

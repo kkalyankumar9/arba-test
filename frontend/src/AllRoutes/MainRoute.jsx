@@ -19,6 +19,7 @@ import AddCategory from '../Components/CategoryOperationStore/AddCategory'
 import Productsdisplay from '../Pages/Productsdisplay'
 import CartPage from '../Pages/CartPage'
 import Homepage from '../Components/Home'
+import ProfilePage from '../Pages/ProfilePage'
 
 
 
@@ -38,7 +39,8 @@ const MainRoute = () => {
         <Route path="/editproduct/:id" element={<PrivateRoute><EditProduct/></PrivateRoute>}/>
         <Route path='/addcategoy' element={<PrivateRoute><AddCategory/></PrivateRoute>}/>
         <Route path="/editcategoy/:id" element={<PrivateRoute><EditCategory/></PrivateRoute>}/>
-   
+        <Route path='/profilepage' element={<PrivateRoute><ProfilePage/></PrivateRoute>}/>
+        
       
    
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>

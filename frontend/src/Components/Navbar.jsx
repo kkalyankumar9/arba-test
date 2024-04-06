@@ -93,7 +93,7 @@ import {
                     <Text fontWeight="500"><Link to="/mystore">My Store</Link></Text>
                   </MenuItem>
                   <MenuItem>
-                    <Text fontWeight="500"><Link to="/profile">Profile</Link></Text>
+                    <Text fontWeight="500"><Link to="/profilepage">Profile</Link></Text>
                   </MenuItem>
                   {token ? (
                     <MenuItem>
