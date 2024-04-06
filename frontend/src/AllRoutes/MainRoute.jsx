@@ -15,9 +15,10 @@ import ForgotPassword from '../Components/ForgotPassword'
 import CategoryTable from '../Components/CategoryOperationStore/Categorybar'
 import EditCategory from '../Components/CategoryOperationStore/EditCategory'
 import AddCategory from '../Components/CategoryOperationStore/AddCategory'
-import Homepage from '../Components/Home'
+
 import Productsdisplay from '../Pages/Productsdisplay'
 import CartPage from '../Pages/CartPage'
+import Homepage from '../Components/Home'
 
 
 
@@ -28,14 +29,14 @@ const MainRoute = () => {
   return (
     <Routes>
         <Route path="/" element={<Homepage/>}/>
-        <Route path="/productdispaly" element={<Productsdisplay/>}/>
+        <Route path="/productdispaly" element={<PrivateRoute><Productsdisplay/></PrivateRoute>}/>
         
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/mystore" element={<PrivateRoute><MyStore/></PrivateRoute>}/>
-        <Route path='/addproduct' element={<AddProduct/>}/>
+        <Route path='/addproduct' element={<PrivateRoute><AddProduct/></PrivateRoute>}/>
         <Route path="/editproduct/:id" element={<PrivateRoute><EditProduct/></PrivateRoute>}/>
-        <Route path='/addcategoy' element={<AddCategory/>}/>
+        <Route path='/addcategoy' element={<PrivateRoute><AddCategory/></PrivateRoute>}/>
         <Route path="/editcategoy/:id" element={<PrivateRoute><EditCategory/></PrivateRoute>}/>
    
       
