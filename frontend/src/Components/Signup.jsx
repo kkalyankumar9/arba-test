@@ -102,19 +102,21 @@ const Signup = () => {
 
   return (
     <>
-      <Box display={"flex"} w={"100%"}>
+      <Box display={"flex"} w="100%" h="100%">
         <Box bgColor={"#B2EBF2"} w={"50%"}>
           {/* Content */}
         </Box>
-        <Flex align="center" justify="center" h="100vh" mt={"4%"} w={"50%"}>
+        <Flex alignItems="center" justifyContent="center" h="100vh"  w={"50%"}>
           <Box />
           <Box maxW="md" w="full" bg="white" shadow="md" rounded="md" p="8">
+          <Box w={"100px"} h={"100px"} borderRadius={"50%"} bgColor={"#B2EBF2"} m={"auto"}></Box>
+
             <Heading as="h1" size="xl" fontWeight="bold" mb="4">
               DEV
             </Heading>
             <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
             <form onSubmit={handleSubmit}>
-              <FormControl mb="4">
+              <FormControl mb="4" borderBottom={"2px solid #B2EBF2"}>
                 <Input
                   type="text"
                   id="username"
@@ -123,9 +125,10 @@ const Signup = () => {
                   value={signData.username}
                   onChange={handleChange}
                   className="input"
+                  border={"none"}
                 />
               </FormControl>
-              <FormControl mb="4">
+              <FormControl mb="4" borderBottom={"2px solid #B2EBF2"}>
                 <Input
                   type="text"
                   id="fullname"
@@ -134,10 +137,12 @@ const Signup = () => {
                   value={signData.fullname}
                   onChange={handleChange}
                   className="input"
+                  border={"none"}
                 />
               </FormControl>
-              <FormControl mb="4">
+              <FormControl mb="4" borderBottom={"2px solid #B2EBF2"}>
                 <Input
+                
                   type="email"
                   id="email"
                   placeholder="Email"
@@ -145,9 +150,11 @@ const Signup = () => {
                   value={signData.email}
                   onChange={handleChange}
                   className="input"
+                  border={"none"}
+                  
                 />
               </FormControl>
-              <FormControl mb="6">
+              <FormControl mb="6" borderBottom={"2px solid #B2EBF2"}>
                 <Input
                   type="password"
                   id="password"
@@ -156,9 +163,10 @@ const Signup = () => {
                   value={signData.password}
                   onChange={handleChange}
                   className="input"
+                  border={"none"}
                 />
               </FormControl>
-              <FormControl mb="6">
+              <FormControl mb="6" borderBottom={"2px solid #B2EBF2"}>
                 <Input
                   type="password"
                   id="confirmPassword"
@@ -167,9 +175,10 @@ const Signup = () => {
                   value={signData.confirmPassword}
                   onChange={handleChange}
                   className="input"
+                  border={"none"}
                 />
               </FormControl>
-              <Flex align="center" justify="center">
+              <Flex align="center" justify="center" >
                 <Button
                   type="submit"
                   bg="blue.500"
