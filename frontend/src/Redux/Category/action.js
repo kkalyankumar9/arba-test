@@ -13,7 +13,7 @@ export const getCategorydata = () => async (dispatch) => {
     }
     const data = await response.json();
     dispatch({ type: GET_SUCCESS, payload: data }); // Dispatching data instead of response
-    console.log(data.data);
+    console.log(data);
   } catch (error) {
     dispatch({ type: GET_ERROR });
     console.error(error);

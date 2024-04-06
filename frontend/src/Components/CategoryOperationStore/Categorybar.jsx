@@ -15,9 +15,10 @@ import {
   useToast,
   Image
 } from '@chakra-ui/react';
-import { deleteProduct, getProductdata } from '../../Redux/Products/action';
+
 import NavBar from '../Navbar';
 import { deleteCategory, getCategorydata } from '../../Redux/Category/action';
+
 
 const CategoryTable = () => {
   const [selectedTask, setSelectedTask] = useState(null);
@@ -29,7 +30,7 @@ const CategoryTable = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
-console.log("categoryData"+categoryData)
+console.log("2"+categoryData)
   useEffect(() => {
     dispatch(getCategorydata());
   }, [dispatch]);
@@ -38,12 +39,12 @@ console.log("categoryData"+categoryData)
     dispatch(deleteCategory(taskId))
       .then(() => {
         toast({
-          title: 'Product Deleted',
+          title: 'category Deleted',
           status: 'success',
           duration: 5000,
           isClosable: true,
         });
-        dispatch(getProductdata());
+        dispatch(getCategorydata());
         setIsDeleteAlertOpen(false);
       })
       .catch((error) => {
@@ -72,7 +73,7 @@ console.log("categoryData"+categoryData)
               </Tr>
             </Thead>
             <Tbody>
-              {categoryData.map((task) => (
+              {categoryData?.map((task) => (
                 <Tr key={task._id}>
                   <Td>{task.name}</Td>
                   <Td>{task.slag}</Td>

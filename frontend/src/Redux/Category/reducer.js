@@ -16,7 +16,7 @@ switch(action.type){
   case GET_ERROR:return{...state,  isLoading:false,isError:true}
   case GET_SUCCESS:
     
-  return{...state,productsData:action.payload,isLoading:false,isError:false}
+  return{...state,categoryData:action.payload,isLoading:false,isError:false}
   case DELETE_REQUEST:
     return { ...state, isLoading: true, isError: false };
   case DELETE_ERROR:

@@ -81,20 +81,20 @@ const EditCategory = () => {
           <Heading mb={4}>Edit Task</Heading>
           <VStack spacing={4}>
             <FormControl>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Name</FormLabel>
               <Input
                 type="text"
-                name="title"
-                value={data.title}
+                name="name"
+                value={data.name}
                 onChange={handleChange}
               />
             </FormControl>
             <FormControl>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>Slag</FormLabel>
               <Input
                 type="text"
-                name="description"
-                value={data.description}
+                name="slag"
+                value={data.slag}
                 onChange={handleChange}
               />
             </FormControl>
@@ -107,15 +107,7 @@ const EditCategory = () => {
                 onChange={handleChange}
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Price</FormLabel>
-              <Input
-                type="text"
-                name="price"
-                value={data.price}
-                onChange={handleChange}
-              />
-            </FormControl>
+           
             <Button colorScheme="blue" onClick={handleUpdate}>
               Update Task
             </Button>

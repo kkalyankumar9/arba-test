@@ -50,34 +50,6 @@ profileRoutes.get("/get", async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 });
-profileRoutes.post("/change_password", async (req, res) => {
-  const {email, oldPassword, newPassword } = req.body;
-
-  try {
-    const user = await UserModel.findById(email);
-
-    if (!user) {
-      return res.status(404).json({ msg: "User not found" });
-    }
-
-    const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
-
-    if (!isPasswordMatch) {
-      return res.status(400).json({ msg: "Old password is incorrect" });
-    }
-  
-
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-
-    user.password = hashedNewPassword;
-    await user.save();
-
-    res.status(200).json({ msg: "Password updated successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: "Internal server error" });
-  }
-});
 
 
 module.exports = { profileRoutes };
