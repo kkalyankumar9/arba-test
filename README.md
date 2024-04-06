@@ -28,8 +28,5 @@
 ## Profile Update
 - /updateprofile/profile_update/:id
 
-## Additional Routes
-- /newroute1
-- /newroute2
-- /newroute3
+
 
