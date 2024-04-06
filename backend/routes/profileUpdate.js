@@ -50,6 +50,40 @@ profileRoutes.get("/get", async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 });
+profileRoutes.patch("/change_password/:id", async (req, res) => {
+  const { id } = req.params;
+  const { oldPassword, newPassword } = req.body;
+  try {
+    // Find the user by id
+    const user = await UserModel.findById(id);
+    
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    // Compare old password with the one stored in the database
+    bcrypt.compare(oldPassword, user.password, async (err, result) => {
+      if (err) {
+        return res.status(500).send({ error: "Internal server error" });
+      }
+
+      if (!result) {
+        return res.status(401).send({ error: "Invalid old password" });
+      }
+
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      // Update user's password with the new hashed password
+      await UserModel.findByIdAndUpdate(id, { password: hashedPassword });
+
+      res.status(200).send({ message: "Password updated successfully" });
+    });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
 
 
 module.exports = { profileRoutes };

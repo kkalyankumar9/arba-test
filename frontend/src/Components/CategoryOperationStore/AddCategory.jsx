@@ -45,7 +45,7 @@ const AddCategory = () => {
       });
   };
  const  handleClickback=()=>{
-  navigate("/")
+  navigate(-1)
   }
 
   return (
@@ -110,7 +110,7 @@ const AddCategory = () => {
             rounded="md"
             onClick={handleClickback}
           >
-            Back to Home
+            Back 
           </Button>
       </VStack>
  

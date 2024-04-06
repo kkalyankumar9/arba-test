@@ -15,6 +15,7 @@ import {
   FormErrorMessage,
   Text
 } from "@chakra-ui/react";
+import NavBar from "./Navbar";
 
 const Signin = () => {
   const initialData = {
@@ -117,6 +118,8 @@ const Signin = () => {
   };
 
   return (
+    <>
+    <NavBar/>
     <Flex>
       <Box w={"50%"} bgColor={"#B2EBF2"}></Box>
       <Box display={"flex"} alignItems="center" h="100vh" justifyContent={"center"} m={"auto"}>
@@ -168,14 +171,22 @@ const Signin = () => {
               </Text>
             </Flex>
           </form>
-          <Flex justify={"center"} align={"center"}>
-            <Button onClick={handleBack} ml={"20px"}>
+          <Flex justify={"center"} align={"center"} mt={"25px"}>
+            <Text>New?</Text>
+          <Button ml={"20px"}> 
+          
+            <Link to={"/signup"}>Sign up</Link>
+              
+            </Button>
+          
+          </Flex>
+          <Button onClick={handleBack} m={"20px"} >
               Back
             </Button>
-          </Flex>
         </Box>
       </Box>
     </Flex>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleGrid, Box, Image, Text, Button, HStack } from '@chakra-ui/react';
+import { SimpleGrid, Box, Image, Text, Button, HStack, Center } from '@chakra-ui/react';
 import NavBar from '../Components/Navbar';
 import { ArrowRightIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
@@ -43,49 +43,56 @@ const CartPage = () => {
             alert("Product not found in cart");
         }
     };
-    
 
     return (
         <>
             <NavBar />
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8} mt={"5%"} >
-                {cartItems.map((item) => (
-                    <Box key={item._id} borderWidth="1px" borderRadius="lg" overflow="hidden">
-                        <Image src={item.image} alt="" h="200px" w="100%" objectFit="cover" />
-                        <Box p="6">
-                            <Text fontWeight="semibold" fontSize="lg" lineHeight="tight" isTruncated>
-                                {item.title}
-                            </Text>
-                            <Text fontWeight="semibold" fontSize="md" lineHeight="tight" isTruncated>
-                                {item.description}
-                            </Text>
-                            <Text color="gray.500" fontSize="lg">
-                                Rs. {item.price}
-                            </Text>
-                            <Button onClick={() => handleRemove(item._id)}>Remove</Button>
-                            <HStack  justifyContent={"space-between"} align={"center"} mt={"3%"} border={"1px solid blue"}>
-                            <Button onClick={() => handleDecrement(item._id)}>-</Button>
-                            <Text fontSize="md"> {item.quantity}</Text>
-                            <Button onClick={() => handleIncrement(item._id)}>+</Button>
-                            </HStack>
+            {cartItems.length > 0 ? (
+                <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={8} mt={"5%"} mx={{ base: "5%", md: "10%", lg: "15%" }}>
+                    {cartItems.map((item) => (
+                        <Box key={item._id} borderWidth="1px" borderRadius="lg" overflow="hidden">
+                            <Image src={item.image} alt="" h="200px" w="100%" objectFit="cover" />
+                            <Box p="6">
+                                <Text fontWeight="semibold" fontSize="lg" lineHeight="tight" isTruncated>
+                                    {item.title}
+                                </Text>
+                                <Text fontWeight="semibold" fontSize="md" lineHeight="tight" isTruncated>
+                                    {item.description}
+                                </Text>
+                                <Text color="gray.500" fontSize="lg">
+                                    Rs. {item.price}
+                                </Text>
+                                <Button onClick={() => handleRemove(item._id)}>Remove</Button>
+                                <HStack bgColor={"teal"} justifyContent={"space-between"} align={"center"} mt={"3%"} color={"white"} fontWeight={"bold"}>
+                                    <Button bgColor={"teal"} color={"white"} onClick={() => handleDecrement(item._id)}>-</Button>
+                                    <Text fontSize="md"> {item.quantity}</Text>
+                                    <Button  bgColor={"teal"} color={"white"} onClick={() => handleIncrement(item._id)}>+</Button>
+                                </HStack>
+                            </Box>
                         </Box>
-                    </Box>
-                ))}
-            </SimpleGrid>
-           {cartItems.length>0?
-           <Box mt={5} display="flex" justifyContent="flex-end">
-           <Button
-             w="10%"
-             color={"white"}
-             bgColor={"#3cd9ee"}
-           
-             textAlign={"right"}
-           ><Link to={"/"}>Check out <ArrowRightIcon /></Link>
-             
-           </Button>
-           </Box>:<Text textAlign={"center"} size={"lg"}  fontWeight={"bold"} color={"#3cd9ee"}>Cart is empty!</Text>
-
-           } 
+                    ))}
+                </SimpleGrid>
+            ) : (
+                <Center h="50vh">
+                    <Text textAlign={"center"} fontSize={"lg"} fontWeight={"bold"} color={"#3cd9ee"}>
+                        Cart is empty!
+                    </Text>
+                </Center>
+            )}
+            {cartItems.length > 0 && (
+                <Box mt={5} display="flex" justifyContent="flex-end" mx={{ base: "5%", md: "10%", lg: "15%" }}>
+                    <Button
+                        w="20%"
+                        color={"white"}
+                        bgColor={"#3cd9ee"}
+                        textAlign={"right"}
+                    >
+                        <Link to={"/"} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            Check out <ArrowRightIcon ml={2} />
+                        </Link>
+                    </Button>
+                </Box>
+            )}
         </>
     );
 };

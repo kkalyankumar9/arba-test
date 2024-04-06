@@ -44,7 +44,7 @@ const AddProduct = () => {
       });
   };
  const  handleClickback=()=>{
-  navigate("/")
+  navigate(-1)
   }
 
   return (
@@ -118,7 +118,7 @@ const AddProduct = () => {
             rounded="md"
             onClick={handleClickback}
           >
-            Back to Home
+            Back 
           </Button>
       </VStack>
  

@@ -30,7 +30,7 @@ const CategoryTable = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const toast = useToast();
-console.log("2"+categoryData)
+
   useEffect(() => {
     dispatch(getCategorydata());
   }, [dispatch]);
@@ -66,7 +66,7 @@ console.log("2"+categoryData)
             <Thead>
               <Tr>
                 <Th>Name</Th>
-                <Th>Slag</Th>
+                <Th>Size</Th>
                 <Th>Image</Th>
                 
                 <Th>Actions</Th>

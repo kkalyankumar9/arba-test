@@ -20,6 +20,7 @@ import Productsdisplay from '../Pages/Productsdisplay'
 import CartPage from '../Pages/CartPage'
 import Homepage from '../Components/Home'
 import ProfilePage from '../Pages/ProfilePage'
+import ChangePassPage from '../Pages/ChangePassword'
 
 
 
@@ -29,7 +30,7 @@ import ProfilePage from '../Pages/ProfilePage'
 const MainRoute = () => {
   return (
     <Routes>
-        <Route path="/" element={<Homepage/>}/>
+        <Route path="/" element={<PrivateRoute><Homepage/></PrivateRoute>}/>
         <Route path="/productdispaly" element={<PrivateRoute><Productsdisplay/></PrivateRoute>}/>
         
         <Route path="/signup" element={<Signup/>}/>
@@ -40,7 +41,7 @@ const MainRoute = () => {
         <Route path='/addcategoy' element={<PrivateRoute><AddCategory/></PrivateRoute>}/>
         <Route path="/editcategoy/:id" element={<PrivateRoute><EditCategory/></PrivateRoute>}/>
         <Route path='/profilepage' element={<PrivateRoute><ProfilePage/></PrivateRoute>}/>
-        
+        <Route path="/changepassword/:id" element={<PrivateRoute><ChangePassPage/></PrivateRoute>}/>
       
    
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>
@@ -52,9 +53,7 @@ const MainRoute = () => {
 
         <Route path="/cart" element={<PrivateRoute><CartPage/></PrivateRoute>}/>
 
-        {/* <Route path="/taskbar" element={<TaskBar/>}/>
-        <Route path="/addtask" element={<PrivateRoute><Addtask/></PrivateRoute>}/>
-        <Route path="/taskedit/:taskId" element={<PrivateRoute><EditTask/></PrivateRoute>}/> */}
+       
        
     </Routes>
   )

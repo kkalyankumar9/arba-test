@@ -13,20 +13,14 @@ import {
   Td,
   Flex,
   useToast,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
+
   Image
 } from '@chakra-ui/react';
 import { deleteProduct, getProductdata } from '../../Redux/Products/action';
 import NavBar from '../Navbar';
-
+import {  AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent, AlertDialogOverlay } from '@chakra-ui/react';
 const ProductsTable = () => {
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
+
 
   const productsData = useSelector((store) => store.ProductsReducer.productsData);
   const isLoading = useSelector((store) => store.ProductsReducer.isLoading);
@@ -49,20 +43,52 @@ const ProductsTable = () => {
           isClosable: true,
         });
         dispatch(getProductdata());
-        setIsDeleteAlertOpen(false);
+        
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const handleRefreshClick = () => {
+    dispatch(getProductdata());
+    };
+    const [isOpen, setIsOpen] = useState(false);
 
-
+    const onClose = () => setIsOpen(false);
+    const onOpen = () => setIsOpen(true);
 
   return (
     <>
       <NavBar />
+      <Box textAlign={"left"} ml={"12%"} > 
+      <Button onClick={handleRefreshClick}>Refresh</Button>
+      
+      
+      <Button onClick={onOpen}>Filter</Button>
+      <AlertDialog isOpen={isOpen} onClose={onClose}>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Filter Options
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              {/* Place your filter options here */}
+              {/* For example: */}
+              {/* <Checkbox>Option 1</Checkbox> */}
+              {/* <Checkbox>Option 2</Checkbox> */}
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button onClick={onClose}>Close</Button>
+              <Button colorScheme="blue" ml={3}>Apply Filters</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       <Button><Link to={"/addproduct"}>Add</Link></Button>
-      <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'100px'}>
+      
+      </Box>
+     
+      <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'40px'}>
         {isLoading && <p className="text-center">Loading...</p>}
         {isError && <p className="text-center text-red-500">Error fetching data</p>}
         {productsData && (

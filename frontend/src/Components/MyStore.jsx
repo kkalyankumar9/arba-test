@@ -14,10 +14,45 @@ const MyStore = () => {
   
    
     <Box mt={"5%"} p={"1%"}>
-    <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} w={"70%"}  m={"auto"}bgColor={" #41daee"} >
-        <Box _hover={{bgColor:"#c3dbf3"}} w={"50%"}><Text size={"md"} onClick={()=>setToggle(true)}>Categories</Text></Box>
-        <Box _hover={{bgColor:"#c3dbf3"}} w={"50%"}><Text size={"md"} onClick={()=>setToggle(false)}>Products</Text></Box>
-    </Box>
+    <Box
+  display="flex"
+  justifyContent="space-evenly"
+  alignItems="center"
+  width="70%"
+  margin="auto"
+  backgroundColor="#41daee"
+  borderRadius="md"
+  boxShadow="md"
+
+>
+  <Box 
+  onClick={()=>setToggle(true)}
+    _hover={{ backgroundColor: "#c3dbf3", boxShadow: "md" }}
+    width="50%"
+    height="60px"
+    cursor="pointer"
+    borderRadius="md"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+  >
+    <Text  fontSize="lg" fontWeight="bold" color="#333">Categories</Text>
+  </Box>
+  <Box 
+    _hover={{ backgroundColor: "#c3dbf3", boxShadow: "md" }}
+    width="50%"
+    height="60px"
+    cursor="pointer"
+    borderRadius="md"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    onClick={()=>setToggle(false)}
+  >
+    <Text  fontSize="lg" fontWeight="bold" color="#333">Products</Text>
+  </Box>
+</Box>
+
         
     </Box>
     <Box>
