@@ -29,8 +29,8 @@ console.log(emailToken)
       });
       const data = await response.json();
       setMessage(data.msg);
-      if (data.token) {
-        setEmailToken(data.token);
+      if (data.emailtoken) {
+        setEmailToken(data.emailtoken);
         toast({
           title: "Reset Email Sent",
           description: data.msg,
@@ -59,7 +59,7 @@ console.log(emailToken)
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: emailToken, newPassword }),
+        body: JSON.stringify({ emailtoken: emailToken, newPassword }),
       });
       const data = await response.json();
       setMessage(data.msg);
@@ -85,7 +85,11 @@ console.log(emailToken)
 
   return (
     <>
-      <Box maxW="md" mx="auto" mt={8} p={4} borderWidth="1px" borderRadius="lg">
+    <Box>
+    <NavBar/>
+    </Box>
+
+      <Box maxW="md" mx="auto" mt={70} p={4} borderWidth="1px" borderRadius="lg">
         <Heading as="h2" mb={4}>Forgot Password</Heading>
         <FormControl id="email" isRequired>
           <FormLabel>Email</FormLabel>
@@ -113,3 +117,5 @@ console.log(emailToken)
 };
 
 export default ForgotPassword;
+
+

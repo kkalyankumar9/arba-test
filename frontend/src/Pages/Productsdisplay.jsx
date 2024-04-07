@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, Image, Text, Button, Heading } from '@chakra-ui/react';
+import { Box, SimpleGrid, Image, Text, Button, Heading,HStack } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../Components/Navbar';
 import { getProductdata } from '../Redux/Products/action';
@@ -28,11 +28,12 @@ const Productsdisplay = () => {
 
    
    
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     const handleAddtoCart = (id, data) => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      dispatch(getProductdata());
         const existingItemIndex = cartItems.findIndex(item => item._id === id);
-
+       
         if (existingItemIndex !== -1) {
             // If item already exists in cart, show alert
             window.alert("This item is already in your cart!");
@@ -48,11 +49,11 @@ const Productsdisplay = () => {
             <NavBar />
             <Box textAlign="center"  p={"2%"} m={"4%"} justifyContent={"center"} alignItems={"center"} >
                 <Heading as="h1" fontSize="2xl" mb={5} textAlign={"left"} ml="14%">Products</Heading>
-                <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8} justifyContent={"center"} alignItems={"center"} w={"70%"} m={"auto"}>
+                <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8} justifyContent={"center"} alignItems={"center"} w={"73%"} m={"auto"}>
                     {displayedProducts.map((product) => (
-                        <Box key={product._id} borderWidth="1px" borderRadius="lg" overflow="hidden" position="relative">
+                        <Box key={product._id} borderWidth="1px" borderRadius="lg" >
                         <Image src={product.image} alt=""  w="600px" h="200px" />
-                        <Box p={6} textAlign={"left"} position="absolute" bottom="10" left="0" right="0" bg="white">
+                        <Box p={6} textAlign={"left"} bg="white">
                           <Text fontWeight="semibold" fontSize="lg" lineHeight="tight" isTruncated>
                             {product.title}
                           </Text>
@@ -63,10 +64,21 @@ const Productsdisplay = () => {
                             Rs. {product.price}
                           </Text>
                         </Box>
-                        <Button mt={"20px"} onClick={() => handleAddtoCart(product._id, product)}  bottom="10px" right="10px"    bgColor={"#3cd9ee"} color={"white"}>Add to cart</Button>
+                        {cartItems.some(item => item._id === product._id) ?
+                                <HStack bgColor={"teal"} justifyContent={"space-between"} align={"center"} mt={"3%"} color={"white"} fontWeight={"bold"}>
+                                    <Button bgColor={"teal"} color={"white"}>-</Button>
+                                    <Text fontSize="md">1</Text>
+                                    <Button bgColor={"teal"} color={"white"}>+</Button>
+                                </HStack>
+                                :
+                                <Button mt={"20px"} onClick={() => handleAddtoCart(product._id, product)} bottom="10px" right="10px" bgColor={"teal"} color={"white"}>Add to cart</Button>
+                            }
+
+                        
                       </Box>
                       
                     ))}
+                     
                 </SimpleGrid>
                 {!showAll && productsData.length > 8 && (
                    <Box mt={5} display="flex" justifyContent="flex-end">

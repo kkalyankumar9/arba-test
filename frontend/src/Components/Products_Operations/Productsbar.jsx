@@ -72,10 +72,10 @@ const ProductsTable = () => {
               Filter Options
             </AlertDialogHeader>
             <AlertDialogBody>
-              {/* Place your filter options here */}
-              {/* For example: */}
-              {/* <Checkbox>Option 1</Checkbox> */}
-              {/* <Checkbox>Option 2</Checkbox> */}
+              <label htmlFor="">Under 500</label>
+            <input  type="checkbox" />
+            <label htmlFor="">above 500</label>
+            <input  type="checkbox" />
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button onClick={onClose}>Close</Button>

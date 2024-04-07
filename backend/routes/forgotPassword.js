@@ -37,25 +37,23 @@ forgotPasswordRoute.post("/forgot_password", async (req, res) => {
       return res.status(404).send({ msg: "User not found" });
     }
 
-    const token = crypto.randomBytes(20).toString("hex");
-    // Set expiration time for the token (e.g., 1 hour)
+    const emailtoken = crypto.randomBytes(20).toString("hex");
     const resetTokenExpiration = Date.now() + 3600000;
 
-    // Store reset token in session
-    req.session.resetToken = { token, expiration: resetTokenExpiration, email };
+    req.session.resetToken = { emailtoken, expiration: resetTokenExpiration, email };
 
     const mailOptions = {
       from: "kkalyan2312@gmail.com",
       to: user.email,
       subject: "Password Reset",
-      text: ` Reset your password through this token:${token}`,
+      text: ` Reset your password through this token:${emailtoken}`,
     };
 
     await transporter.sendMail(mailOptions);
 
     return res
       .status(200)
-      .send({ msg: "Email sent successfully", token: token });
+      .send({ msg: "Email sent successfully", emailtoken: emailtoken });
   } catch (error) {
     console.error(error);
     res.status(500).send({ msg: "Internal server error" });
@@ -66,16 +64,16 @@ forgotPasswordRoute.post("/forgot_password", async (req, res) => {
 });
 
 forgotPasswordRoute.patch("/reset_password", async (req, res) => {
-  const { token, newPassword } = req.body;
+  const { emailtoken, newPassword } = req.body;
 
   try {
     const resetTokenData = req.session.resetToken;
 
-    console.log("Token Data from Request:", token);
+    console.log("Token Data from Request:", emailtoken);
 
     if (
       !resetTokenData ||
-      decodeURIComponent(resetTokenData.token) !== token ||
+      decodeURIComponent(resetTokenData.emailtoken) !== emailtoken ||
       resetTokenData.expiration < Date.now()
     ) {
       return res.status(404).send({ msg: "Invalid or expired token" });

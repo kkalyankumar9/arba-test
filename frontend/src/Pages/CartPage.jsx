@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SimpleGrid, Box, Image, Text, Button, HStack, Center } from '@chakra-ui/react';
 import NavBar from '../Components/Navbar';
 import { ArrowRightIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+        setCartItems(items);
+    }, []);
 
     const handleIncrement = (id) => {
         const updatedCartItems = cartItems.map(item => {
@@ -14,9 +19,8 @@ const CartPage = () => {
             }
             return item;
         });
-
-        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-        // You may need to force a re-render here if the state is not updated automatically
+        setCartItems(updatedCartItems);
+        updateLocalStorage(updatedCartItems);
     };
 
     const handleDecrement = (id) => {
@@ -26,23 +30,20 @@ const CartPage = () => {
             }
             return item;
         });
-
-        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-        // You may need to force a re-render here if the state is not updated automatically
+        setCartItems(updatedCartItems);
+        updateLocalStorage(updatedCartItems);
     };
 
     const handleRemove = (id) => {
-        const index = cartItems.findIndex(item => item._id === id);
-        if (index !== -1) {
-            const updatedCartItems = [...cartItems];
-            updatedCartItems.splice(index, 1);
-            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-            alert("Product removed");
-            // You may need to force a re-render here if the state is not updated automatically
-        } else {
-            alert("Product not found in cart");
-        }
+        const updatedCartItems = cartItems.filter(item => item._id !== id);
+        setCartItems(updatedCartItems);
+        updateLocalStorage(updatedCartItems);
     };
+
+    const updateLocalStorage = (items) => {
+        localStorage.setItem('cartItems', JSON.stringify(items));
+    };
+   
 
     return (
         <>
@@ -86,6 +87,7 @@ const CartPage = () => {
                         color={"white"}
                         bgColor={"#3cd9ee"}
                         textAlign={"right"}
+                    
                     >
                         <Link to={"/"} style={{ textDecoration: 'none', color: 'inherit' }}>
                             Check out <ArrowRightIcon ml={2} />

@@ -13,6 +13,7 @@ import {
   Flex,
   useToast,
   FormErrorMessage,
+  Link as ChakraLink,
   Text
 } from "@chakra-ui/react";
 import NavBar from "./Navbar";
@@ -120,13 +121,16 @@ const Signin = () => {
   return (
     <>
     <NavBar/>
-    <Flex>
+    <Flex mt={"30px"}>
       <Box w={"50%"} bgColor={"#B2EBF2"}></Box>
       <Box display={"flex"} alignItems="center" h="100vh" justifyContent={"center"} m={"auto"}>
         <Box bg="white"   shadow="md" rounded="md" p="8" w="96">
-          <Heading as="h1" size="xl" fontWeight="bold" mb="4">
-            Sign In
-          </Heading>
+        <Box w={"100px"} h={"100px"} borderRadius={"50%"} bgColor={"#B2EBF2"} m={"auto"}></Box>
+
+        <Heading as="h1" size="xl" fontWeight="bold" mb="4">
+              DEV
+            </Heading>
+            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
           <form onSubmit={handleSubmit}>
             <FormControl mb="4" isInvalid={inputErrors.email}  borderBottom={"2px solid #B2EBF2"}>
 
@@ -155,7 +159,7 @@ const Signin = () => {
               />
               <FormErrorMessage>Password is required</FormErrorMessage>
             </FormControl>
-            <Flex justify="space-between">
+            <Flex justify="space-between" align={"center"}>
               <Button
                 type="submit"
                 bg="blue.500"
@@ -163,21 +167,20 @@ const Signin = () => {
                 _hover={{ bg: "blue.700" }}
                 fontWeight="bold"
                 rounded="md"
+              
               >
-                Sign In
+                Login
               </Button>
               <Text>
                 <Link to={"/forgotpassword"}>Forgot password?</Link>
               </Text>
             </Flex>
           </form>
-          <Flex justify={"center"} align={"center"} mt={"25px"}>
-            <Text>New?</Text>
-          <Button ml={"20px"}> 
-          
-            <Link to={"/signup"}>Sign up</Link>
-              
-            </Button>
+          <Flex justifyContent={"center"} alignItems={"center"} mt={"25px"}>
+          <Text m="2">Don't have an account?</Text>
+            <ChakraLink as={Link} to="/signup" color="blue.500" _hover={{ textDecoration: "underline" }}>
+              Sign Up
+            </ChakraLink>
           
           </Flex>
           <Button onClick={handleBack} m={"20px"} >
