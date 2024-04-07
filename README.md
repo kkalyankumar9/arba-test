@@ -1,6 +1,8 @@
 # arba-test
 ## Backend Deployed link
   https://arba-test.onrender.com
+## Frontend Deployed link
+https://66122285ae6860701dbf3c17--flourishing-fudge-e07bb3.netlify.app/signin
   
 # Routes for Backend
 
