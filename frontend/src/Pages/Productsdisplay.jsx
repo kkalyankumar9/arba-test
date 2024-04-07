@@ -16,12 +16,12 @@ const Productsdisplay = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // Initially display only 8 products
+        
         setDisplayedProducts(productsData.slice(0, 8));
     }, [productsData]);
 
     const handleShowMore = () => {
-        // Display all products when "Show more products" button is clicked
+        
         setDisplayedProducts(productsData);
         setShowAll(true);
     };
@@ -35,10 +35,10 @@ const Productsdisplay = () => {
         const existingItemIndex = cartItems.findIndex(item => item._id === id);
        
         if (existingItemIndex !== -1) {
-            // If item already exists in cart, show alert
+            
             window.alert("This item is already in your cart!");
         } else {
-            // If item does not exist in cart, add it with quantity 1
+          
             cartItems.push({ ...data, quantity: 1 });
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             window.alert("Added to cart!");
