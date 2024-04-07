@@ -3,7 +3,9 @@
   https://arba-test.onrender.com
 ## Frontend Deployed link
 https://66122285ae6860701dbf3c17--flourishing-fudge-e07bb3.netlify.app/signin
-  
+## Trail Authentication 
+ Email ID:- kummarikalyan010@gmail.com
+ Password:- Kalyan@123
 # Routes for Backend
 
 ## Authentication
