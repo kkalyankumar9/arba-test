@@ -69,7 +69,7 @@ const NavBar = () => {
     >
       <Container maxW="1280px" px={4} mx="auto">
         <HStack spacing={4}>
-          <Link to="/productdisplay">
+          <Link to="/productdispaly">
             <Image
               alt="dev logo"
               w={'auto'}

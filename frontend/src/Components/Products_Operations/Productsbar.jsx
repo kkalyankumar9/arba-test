@@ -18,7 +18,6 @@ import {
 } from '@chakra-ui/react';
 import { deleteProduct, getProductdata } from '../../Redux/Products/action';
 import NavBar from '../Navbar';
-import {  AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent, AlertDialogOverlay } from '@chakra-ui/react';
 const ProductsTable = () => {
 
 
@@ -52,39 +51,19 @@ const ProductsTable = () => {
   const handleRefreshClick = () => {
     dispatch(getProductdata());
     };
-    const [isOpen, setIsOpen] = useState(false);
-
-    const onClose = () => setIsOpen(false);
-    const onOpen = () => setIsOpen(true);
+  
+  
 
   return (
     <>
       <NavBar />
-      <Box textAlign={"left"} ml={"12%"} > 
-      <Button onClick={handleRefreshClick}>Refresh</Button>
+      <Box textAlign={"left"} ml={"12%"} p={"25px"} > 
+      <Button onClick={handleRefreshClick} bgColor={"teal"} color={"white"}>Refresh</Button>
       
       
-      <Button onClick={onOpen}>Filter</Button>
-      <AlertDialog isOpen={isOpen} onClose={onClose}>
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Filter Options
-            </AlertDialogHeader>
-            <AlertDialogBody>
-              <label htmlFor="">Under 500</label>
-            <input  type="checkbox" />
-            <label htmlFor="">above 500</label>
-            <input  type="checkbox" />
-            </AlertDialogBody>
-            <AlertDialogFooter>
-              <Button onClick={onClose}>Close</Button>
-              <Button colorScheme="blue" ml={3}>Apply Filters</Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-      <Button><Link to={"/addproduct"}>Add</Link></Button>
+      {/* <Button onClick={onOpen}>Filter</Button> */}
+      
+      <Button  ml={"25px"} bgColor={"teal"} color={"white"}><Link to={"/addproduct"} >Add</Link></Button>
       
       </Box>
      

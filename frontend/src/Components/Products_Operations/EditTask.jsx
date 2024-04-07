@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
@@ -25,7 +25,7 @@ const EditProduct = () => {
     price: ""
   });
   const toast = useToast();
-
+const navigate=useNavigate("")
   useEffect(() => {
     const existingProduct = productsData.find((product) => product._id === id);
     if (existingProduct) {
@@ -61,7 +61,9 @@ const EditProduct = () => {
         });
       });
   };
-
+  const  handleClickback=()=>{
+    navigate(-1)
+    }
   return (
     <>
       <NavBar />
@@ -108,8 +110,19 @@ const EditProduct = () => {
             <Button colorScheme="blue" onClick={handleUpdate}>
               Update Product
             </Button>
+            <Button
+          
+          colorScheme="gray"
+          _hover={{ bg: "blue.700" }}
+          size="md"
+          rounded="md"
+          onClick={handleClickback}
+        >
+          Back 
+        </Button>
           </VStack>
         </Box>
+      
       </Box>
     </>
   );

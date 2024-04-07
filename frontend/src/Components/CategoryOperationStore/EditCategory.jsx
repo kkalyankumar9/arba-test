@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
@@ -21,10 +21,10 @@ const EditCategory = () => {
   const [category, setCategory] = useState({
     image: "",
     name: "",
-    slag: ""
+    slug: ""
   });
   const toast = useToast();
-
+const navigate=useNavigate("")
   useEffect(() => {
     const existingCategory = categoryData.find((category) => category._id === id);
     if (existingCategory) {
@@ -60,6 +60,9 @@ const EditCategory = () => {
         });
       });
   };
+  const  handleClickback=()=>{
+    navigate(-1)
+    }
 
   return (
     <>
@@ -78,11 +81,11 @@ const EditCategory = () => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel>Slag</FormLabel>
+              <FormLabel>Slug</FormLabel>
               <Input
                 type="text"
-                name="slag"
-                value={category.slag}
+                name="slug"
+                value={category.slug}
                 onChange={handleChange}
               />
             </FormControl>
@@ -98,8 +101,19 @@ const EditCategory = () => {
             <Button colorScheme="blue" onClick={handleUpdate}>
               Update Category
             </Button>
+            <Button
+          
+          colorScheme="gray"
+          _hover={{ bg: "blue.700" }}
+          size="md"
+          rounded="md"
+          onClick={handleClickback}
+        >
+          Back 
+        </Button>
           </VStack>
         </Box>
+       
       </Box>
     </>
   );

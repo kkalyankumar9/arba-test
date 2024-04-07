@@ -45,7 +45,7 @@ const MainRoute = () => {
       
    
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>
-        <Route path='/respassword' />
+        {/* <Route path='/respassword' /> */}
 
         <Route path="/productStore" element={<PrivateRoute><ProductsTable/></PrivateRoute>}/>
 

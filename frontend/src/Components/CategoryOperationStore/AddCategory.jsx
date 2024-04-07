@@ -20,7 +20,7 @@ const AddCategory = () => {
     
     image:"",
     name:"",
-    slag:""
+    slug:""
    
   };
 
@@ -79,13 +79,13 @@ const AddCategory = () => {
           </FormControl>
 
           <FormControl mb="4">
-            <FormLabel htmlFor="description"> Slag</FormLabel>
+            <FormLabel htmlFor="description"> Slug</FormLabel>
             <Input
               type="text"
-              id="slag"
-              placeholder=" Enter slag"
-              name="slag"
-              value={taskAdd.slag}
+              id="slug"
+              placeholder=" Enter slug"
+              name="slug"
+              value={taskAdd.slug}
               onChange={handleChange}
             />
           </FormControl>

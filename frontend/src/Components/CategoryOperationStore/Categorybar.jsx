@@ -21,8 +21,7 @@ import { deleteCategory, getCategorydata } from '../../Redux/Category/action';
 
 
 const CategoryTable = () => {
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
+ 
 
   const categoryData = useSelector((store) => store.CategoryReducer.categoryData);
   const isLoading = useSelector((store) => store.CategoryReducer.isLoading);
@@ -45,20 +44,26 @@ const CategoryTable = () => {
           isClosable: true,
         });
         dispatch(getCategorydata());
-        setIsDeleteAlertOpen(false);
+      
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-
+const handleRefreshClick=()=>{
+  getCategorydata()
+}
 
   return (
     <>
-      <Button><Link to={"/addcategoy"}>Add</Link></Button>
+       <Box textAlign={"left"} ml={"12%"} p={"25px"}  >
+          <Button onClick={handleRefreshClick} bgColor={"teal"} color={"white"}>Refresh</Button>
+
+      <Button bgColor={"teal"} ml={"25px"} color='white ' ><Link to={"/addcategoy"}  >Add</Link></Button>
+      </Box>
       <NavBar />
-      <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'100px'}>
+      <Box mx="auto" w="70%" my="4" p="4" borderWidth="1px" borderRadius="lg" mt={'50px'}>
         {isLoading && <p className="text-center">Loading...</p>}
         {isError && <p className="text-center text-red-500">Error fetching data</p>}
         {categoryData && (
@@ -66,7 +71,7 @@ const CategoryTable = () => {
             <Thead>
               <Tr>
                 <Th>Name</Th>
-                <Th>Size</Th>
+                <Th>Slug</Th>
                 <Th>Image</Th>
                 
                 <Th>Actions</Th>
@@ -76,13 +81,15 @@ const CategoryTable = () => {
               {categoryData?.map((task) => (
                 <Tr key={task._id}>
                   <Td>{task.name}</Td>
-                  <Td>{task.slag}</Td>
+                  <Td>{task.slug}</Td>
                   <Td><Image src={task.image} alt="" h="100px" /></Td>
              
                   <Td>
                     <Flex align="center">
                       <Button
                         colorScheme="red"
+            
+            
                         onClick={() => {
                           handleDelete(task._id)
                         }}
