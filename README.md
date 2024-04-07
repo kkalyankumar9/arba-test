@@ -56,7 +56,8 @@
 ## Profile
 ![image](https://github.com/kkalyankumar9/arba-test/assets/112814583/ec1ec7b9-3179-43cf-8463-b0122c5c1ca3)
 ## Forgot Password
-![Uploading image.png…]()
+![image](https://github.com/kkalyankumar9/arba-test/assets/112814583/ed610c10-9b8b-444c-a8aa-583b16f160a7)
+
 
 
 
