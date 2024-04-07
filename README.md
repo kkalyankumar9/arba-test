@@ -3,7 +3,8 @@
   https://arba-test.onrender.com
 ## Frontend Deployed link
 https://dainty-blini-53ee89.netlify.app/
-
+## Short Video
+https://drive.google.com/file/d/1hbI_iFiaRGa39YiRxGhsqzdYFqiNTuLS/view?usp=sharing
 ## Trail Authentication 
  Email ID:- kummarikalyan010@gmail.com,
  Password:- Kalyan@123 
@@ -33,6 +34,9 @@ https://dainty-blini-53ee89.netlify.app/
 
 ## Profile Update
 - /updateprofile/profile_update/:id
+- /updateprofile/change_password/:id
+- /updateprofile//get
+  
 
 
 # FrontEnd
